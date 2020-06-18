@@ -1,0 +1,51 @@
+body {
+  background-repeat: no-repeat;
+  background-position: center;
+  background-color: #fff;
+  color: #000;
+}
+
+.navbar-laravel {
+  background-color: #fff !important;
+}
+
+.navbar-brand {
+  color: #000;
+  font-size: 32px;
+}
+
+.jumbotron {
+  height: 100%;
+  background-color: #fff;
+}
+
+.brand {
+  font-size: 79px !important;
+  padding-top: 50px;
+}
+
+.title {
+  font-size: 37px;
+}
+
+.sub-title {
+  font-size: 20px !important;
+  padding-top: 20px;
+}
+
+.create-an-account {
+  border-radius: 12px;
+  height: 70px;
+  width: 700px;
+  margin-top: 50px;
+}
+
+.login {
+  color: #000;
+  margin-top: 20px;
+}
+
+.get-started {
+  color: #fff;
+}
+
