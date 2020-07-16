@@ -15,12 +15,21 @@ Route::get('/', function () {
     return view('welcome');
 });
 
-Auth::routes(['verify' => true]);
+Auth::routes();
+Route::get('/user/verify/{token}', 'Auth\RegisterController@verifyUser');
+
+
 
 Route::get('/home', 'HomeController@index')->name('home');
 
 
 Route::get('/register', 'Auth\RegisterController@showRegistrationForm');
-Route::post('/register', 'Auth\RegisterController@reigister');
+Route::post('/register', 'Auth\RegisterController@register');
 
+Route::get('/login', 'Auth\LoginController@showLoginForm')->name('login');
+Route::post('/login', 'Auth\LoginController@login');
 
+Route::group(['prefix' => 'admin', 'middlesware' => 'auth'], function() {
+	Route::get('post/create', 'Admin\PostController@add');
+	Route::post('post/create', 'Admin\PostController@create');
+});

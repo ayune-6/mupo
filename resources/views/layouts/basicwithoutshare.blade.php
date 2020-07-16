@@ -5,6 +5,9 @@
                 <meta http-equiv="X-UA-Compatible" content="IE=edge">
                 <meta name="viewport" content="width=device-width, initial-scale=1">
 
+                {{-- csrf Token --}}
+                <meta name="csrf-token" content="{{ csrf_token() }}">
+
                 <title>@yield('title')</title>
                 {{-- Javascript読み込み --}}
                 <script src="{{ asset('js/app.js') }}" defer></script>
@@ -27,9 +30,21 @@
                                                 <span class="navbar-toggler-icon"></span>
                                         </button>
 
-           			</nav>
-			</div>
-			<main class="py-4">
+                                        <div class="collapse navbar-collapse" id="navbarSupportedContent">
+                                                <ul class="navbar-nav mr-auto">
+                                                        <li class="nav-item"><a class="nav-link" href="{{ url('/home') }}">Home</a></li>
+                                                        <li class="nav-item"><a class="nav-link" href="{{ url('/notifications') }}">Notification</a></li>
+                                                        <li class="nav-item right"><a class="nav-link" href="#">Profile</a></li>
+                                                </ul>
+                                                <form class="form-inline my-2 my-lg-0">
+                                                        <input class="form-control mr-sm-2" type="search" placeholder="Search" aria-label="Search">
+                                                        <button class="btn btn-dark" type="submit">Search</button>
+                                                </form>
+                                        </div>
+                                </nav>
+                        </div>
+                        {{-- ナビゲーションバー終わり --}} 
+                        <main class="py-4">
                                 @yield('content')
                         </main>
                 </div>
