@@ -37,7 +37,12 @@ class LoginController extends Controller
         $this->middleware('guest')->except('logout');
     }
 
-    public function authenticated(Request $request, $user)
+    public function username()
+    {
+        return 'username';
+    }
+
+    public function authenticated(\Illuminate\Http\Request $request, $user)
     {
         if (!$user->verified) {
             auth()->logout();
@@ -45,6 +50,5 @@ class LoginController extends Controller
         }
         return redirect()->intended($this->redirectPath());
     }
-
 
 }

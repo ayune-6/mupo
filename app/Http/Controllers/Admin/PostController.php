@@ -24,21 +24,9 @@ class PostController extends Controller
 
 		$post = new Post;
 		$data = $request->all();
-		$video_name = $request->file('video')->getRealPath();
 
-		Cloudder::uploadVideo($video_name);
-
-		$result = Cloudder::getResult();
-
-		$path = $result->filename->store();
-
-		$post->title = $data['title'];
-		$post->description = $data['description'];
-		$post->user_id = Auth::id();
-		$post->video_url = $result['url'];
-		$post->video_path = basename($path);
-
-
+		unset($data['_token']);
+		
 		$post->fill($data);
 		$post->save();
 
