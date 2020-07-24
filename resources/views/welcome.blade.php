@@ -34,7 +34,7 @@
 									<li class="nav-item"><a class="nav-link" href="{{ url('/home') }}">Home</a></li>
 									<li class="nav-item"><a class="nav-link" href="{{ url('/notifications') }}">Notifications</a></li>
 									<li class="nav-item right"><a class="nav-link" href="#">Profile</a></li>
-									<button class="btn btn-outline-dark share" type="button"><a class="share-link" href="{{ url('/admin/post/create') }}">SHARE</a></button>
+									<button class="btn btn-outline-dark share" type="button"><a class="share-link" href="{{ url('/admin/post/upload') }}">SHARE</a></button>
 								</ul>
 								<form class="form-inline my-2 my-lg-0">
 									<input class="form-control mr-sm-2" type="search" placeholder="Search with #" aria-label="Search">

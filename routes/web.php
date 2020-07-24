@@ -26,8 +26,10 @@ Route::get('/register', 'Auth\RegisterController@showRegistrationForm');
 Route::post('/register', 'Auth\RegisterController@register');
 
 Route::group(['prefix' => 'admin', 'middlesware' => 'auth'], function() {
-	Route::get('post/create', 'Admin\PostController@add');
+	Route::get('post/upload', 'Admin\PostController@videoupload');
+	Route::get('post/create', 'Admin\PostController@informationpost');
 	Route::post('post/create', 'Admin\PostController@create');
+
 });
 
 Route::get('/login', 'Auth\LoginController@showLoginForm')->name('login');

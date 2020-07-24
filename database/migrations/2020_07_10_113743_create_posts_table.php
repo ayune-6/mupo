@@ -15,11 +15,12 @@ class CreatePostsTable extends Migration
     {
         Schema::create('posts', function (Blueprint $table) {
             $table->increments('id');
-	    $table->string('title');
+	        $table->string('title');
             $table->string('description');
-            $table->string('video_url');
-	    $table->string('video_path');
             $table->timestamps();
+            $table->string('username');
+            $table->string('video_id');
+           
         });
     }
 
@@ -31,5 +32,10 @@ class CreatePostsTable extends Migration
     public function down()
     {
         Schema::dropIfExists('posts');
+    }
+
+    public function user()
+    {
+        return $this->belongsTo('App\User');
     }
 }

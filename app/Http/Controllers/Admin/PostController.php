@@ -6,13 +6,20 @@ use Illuminate\Http\Request;
 use App\Http\Controllers\Controller;
 
 use App\Post;
+use App\Video;
+use Carbon\Carbon;
 use Auth;
 
 use  JD\Cloudder\Facades\Cloudder;
 
 class PostController extends Controller
 {
-	public function  add()
+	public function videoupload()
+	{
+		return view('admin.post.upload');
+	}
+
+	public function informationpost()
 	{
 		return view('admin.post.create');
 	}
@@ -23,13 +30,16 @@ class PostController extends Controller
 		$this->validate($request, Post::$rules);
 
 		$post = new Post;
+		$post->username = $user->username;
 		$data = $request->all();
 
 		unset($data['_token']);
-		
+
 		$post->fill($data);
 		$post->save();
 
 		return redirect('/home');
 	}
+
+
 }
