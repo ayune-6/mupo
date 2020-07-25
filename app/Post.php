@@ -11,5 +11,10 @@ class Post extends Model
 	public static $rules = array(
         	'title' => 'required|max:100',
         	'description' => 'required|max:200',
-    	);
+		);
+		
+	public function user()
+	{
+		return $this->belongsTo('App\User');
+	}
 }

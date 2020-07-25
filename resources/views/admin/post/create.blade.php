@@ -27,6 +27,7 @@
                                 <textarea class="form-control" name="description" rows="10">{{ old('description') }}</textarea>
                             </div>
                         </div>
+                        <input type="hidden" name="video_id" value="{{ $video_id }}">
                         {{ csrf_field() }}
                         <input type="submit" class="btn btn-dark btn-lg post" value="Post">    
                         

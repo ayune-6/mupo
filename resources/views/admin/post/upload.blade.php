@@ -10,7 +10,8 @@
                     <div class="container description mx-auto my-auto">
                         <h1 class="share-your-sound">Share your sound!</h1>
                         <h2 class="description">First, select your video to upload.</h2>
-            
+                        {{-- <form action="{{ action('Admin\PostController@upload') }}" method="POST" enctype="multipart/form-data"> --}}
+
                             <script src="https://widget.cloudinary.com/v2.0/global/all.js" type="text/javascript"></script>   
                             <button id="upload_widget" class="cloudinary-button" onclick="myWidget.open()">Upload files</button>
                             <script type="text/javascript">
@@ -43,14 +44,22 @@
                                         console.log(video_id);
                                         var target = document.getElementById("next-step");
                                         target.href = "{{ url('/admin/post/create') }}" +"?video_id="+video_id;
+                                    
+
+                                        
                                     }
+
+            
                                 }
                             )
+                               
                             </script> 
-                      
+                            
+                            <button class="btn btn-dark btn-lg next" type="button"><a id ="next-step" class="next-step" href="{{ url('/admin/post/create') }}">Next Step</a></button>
+                        {{ csrf_field() }}
+                        {{-- </form> --}}
                     </div>
                 </div>
-                <button class="btn btn-dark btn-lg next" type="button"><a id="next-step" class="next-step" href="{{ url('/admin/post/create') }}">Next Step</a></button>
                 
             </div>
         </div>

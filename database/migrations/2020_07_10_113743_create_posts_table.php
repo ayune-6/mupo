@@ -18,7 +18,9 @@ class CreatePostsTable extends Migration
 	        $table->string('title');
             $table->string('description');
             $table->timestamps();
-            $table->string('username');
+            $table->integer('user_id')->unsigned()->nullable();
+            $table->foreign('user_id')
+                 ->references('id')->on('users');
             $table->string('video_id');
            
         });
@@ -34,8 +36,5 @@ class CreatePostsTable extends Migration
         Schema::dropIfExists('posts');
     }
 
-    public function user()
-    {
-        return $this->belongsTo('App\User');
-    }
+    
 }
