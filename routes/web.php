@@ -34,3 +34,12 @@ Route::group(['prefix' => 'admin', 'middlesware' => 'auth'], function() {
 
 Route::get('/login', 'Auth\LoginController@showLoginForm')->name('login');
 Route::post('/login', 'Auth\LoginController@login');
+
+Route::get('/ajax/like/user_list', 'LikesController@user_list');
+Route::post('/like', 'LikesController@like')->name('like');
+
+Route::group(['prefix' => 'admin/profile','middleware'=>'auth'],function(){
+	Route::get('create', 'Admin\ProfileController@add');
+	Route::post('create', 'Admin\ProfileController@create');
+	Route::get('/', 'Admin\ProfileController@show');
+});

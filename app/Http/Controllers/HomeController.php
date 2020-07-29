@@ -3,6 +3,10 @@
 namespace App\Http\Controllers;
 
 use Illuminate\Http\Request;
+use App\Post;
+use App\User;
+use App\Like;
+
 
 class HomeController extends Controller
 {
@@ -21,8 +25,10 @@ class HomeController extends Controller
      *
      * @return \Illuminate\Http\Response
      */
-    public function index()
+    public function index(Request $request)
     {
-        return view('home/home');
+        $posts = Post::all()->sortByDesc('created_at');
+        return view('home/home', ['posts' => $posts]);
+
     }
 }

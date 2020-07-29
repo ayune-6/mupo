@@ -1,7 +1,6 @@
 <?php
 
 namespace App;
-
 use Illuminate\Notifications\Notifiable;
 use Illuminate\Foundation\Auth\User as Authenticatable;
 
@@ -36,6 +35,15 @@ class User extends Authenticatable
     {
         return $this->hasMany('App\Post');
     }
+
+    public function likes()
+    {
+      return $this->hasMany(Like::class);
+    }
     
+    public function profiles()
+    {
+        return $this->hasMany('App\Profile');
+    }
 
 }

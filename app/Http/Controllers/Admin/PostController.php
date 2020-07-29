@@ -5,6 +5,7 @@ namespace App\Http\Controllers\Admin;
 use Illuminate\Http\Request;
 use App\Http\Controllers\Controller;
 
+use App\Http\Requests;
 use App\Post;
 use App\User;
 use Auth;
@@ -40,7 +41,7 @@ class PostController extends Controller
 
 		$post = new Post;
 		$user = new User;
-		$post->user_id = $user->id;
+		$post->user_id = request()->user()->id;
 		$data = $request->all();
 
 		unset($data['_token']);
@@ -49,6 +50,18 @@ class PostController extends Controller
 		$post->save();
 
 		return redirect('/home');
+	}
+
+	public function __construct()
+	{
+		$this->middleware('auth', array('except' => 'index'));
+	}
+
+	public function show($id) {
+		$post = Post::findOrFail($id);
+		$like = $post->likes()->where('user_id', Auth::user()->id)->first();
+
+		return view('posts.show')->with(array('post' => $post, 'like' => $like));
 	}
 
 
