@@ -34,7 +34,7 @@
                                                 <ul class="navbar-nav mr-auto">
                                                         <li class="nav-item"><a class="nav-link" href="{{ url('/home') }}">Home</a></li>
                                                         <li class="nav-item"><a class="nav-link" href="{{ url('/notifications') }}">Notification</a></li>
-                                                        <li class="nav-item right"><a class="nav-link" href="#">Profile</a></li>
+                                                        <li class="nav-item right"><a class="nav-link" href="{{ route('/profile', ['username'=>auth()->user()->username]) }}">Profile</a></li>
                                                 </ul>
                                                 <form class="form-inline my-2 my-lg-0">
                                                         <input class="form-control mr-sm-2" type="search" placeholder="Search" aria-label="Search">

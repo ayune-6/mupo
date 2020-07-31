@@ -12,28 +12,25 @@
 
                     
                     <video
-                        id='sound-player'
+                        id='sound-player-{{ $loop->count }}'
                         controls
                         class="cld-video-player cld-video-player-skin-light">
+                        data-cld-source='{ "publicId": "{{ $post->video_id }}" }'
                     </video>
-                    <script type="text/javascript"> 
-                        var cld = cloudinary.Cloudinary.new({ cloud_name: "dlzhqknj5" });
-                        var player = cld.videoPlayer('sound-player', {
-                            
-                            publicId: '{{ $post->video_id }}',
-                            loop: true,
-                            controls: true,
-                            autoplayMode: 'on-scroll',
-                            floatingWhenNotVisible: 'left',
-                        });
-                        
-                    </script>
+                    
                        
                             <div class="mask rgba-white-slight"></div>
                     </div>
                     <div class="card-body">
                         <h4 class="title">{{ str_limit($post->title, 50) }}</h4>
-                        <p class="username">＠{{ Auth::user()->username }}</p>
+                        <a class="username" href="{{ route('/profile', ['username'=>$post->user->username]) }}">＠{{ $post->user->username }}</a>
+                        
+                        {{-- <form action="{{ action('ProfileController@getuser') }}" method="post"> --}}
+                            {{-- <input type="hidden" name="profile_data" value="{{ $post_by = $post->user->id }}"> --}}
+                            {{-- <input type="submit" class="username" value="＠{{ $post->user->username }}" onclick="location.href='{{ route('/profile', ['username'=>$post->user->username]) }}'"> --}}
+
+                            {{ csrf_field() }}
+                        {{-- </form> --}}
                         <p class="description">{{ str_limit($post->description, 200) }}</p>
 
                         <button type="button" class="btn" id="like">LIKE</button>
@@ -42,7 +39,7 @@
                         
                         <script>
                             
-                            document.getElementById('like').onclick = function(){
+                            document.getElementsByClass('btn').onclick = function(){
                                 console.log('liked');
                                 $.ajax({
                                     method: 'POST',
@@ -61,6 +58,17 @@
                 </div>
             </div>
         @endforeach
+        <script type="text/javascript"> 
+            var cld = cloudinary.Cloudinary.new({ cloud_name: "dlzhqknj5" });
+            var players = cld.videoPlayers('.cld-video-player', {
+                
+                loop: true,
+                controls: true,
+                autoplayMode: 'on-scroll',
+                floatingWhenNotVisible: 'left',
+            });
+            
+        </script>
     </div>
 </div>
 @endsection

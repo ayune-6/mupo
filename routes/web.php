@@ -21,6 +21,7 @@ Route::get('/user/verify/{token}', 'Auth\RegisterController@verifyUser');
 
 
 Route::get('/home', 'HomeController@index')->name('home');
+//Route::post('/home', 'ProfileController@getuser')->name('home');
 
 Route::get('/register', 'Auth\RegisterController@showRegistrationForm');
 Route::post('/register', 'Auth\RegisterController@register');
@@ -38,8 +39,16 @@ Route::post('/login', 'Auth\LoginController@login');
 Route::get('/ajax/like/user_list', 'LikesController@user_list');
 Route::post('/like', 'LikesController@like')->name('like');
 
-Route::group(['prefix' => 'admin/profile','middleware'=>'auth'],function(){
-	Route::get('create', 'Admin\ProfileController@add');
-	Route::post('create', 'Admin\ProfileController@create');
-	Route::get('/', 'Admin\ProfileController@show');
+Route::group(['prefix' => '/profile','middleware'=>'auth'],function(){
+	Route::get('/create', 'Admin\ProfileController@add');
+	Route::post('/create', 'Admin\ProfileController@create');
+	Route::get('/edit/{username}', 'Admin\ProfileController@edit')->name('/profile/edit');
+	Route::post('/edit', 'Admin\ProfileController@update');
+	Route::get('/{username}', 'ProfileController@show')->name('/profile');
+	
 });
+
+
+
+
+

@@ -27,31 +27,33 @@
 	<body>
         	<div id="app">
             		{{-- ナビゲーションバー --}}
-			<div class="container">
-            			<nav class="navbar navbar-light navbar-expand-lg" style="background-color: #ffffff">
+				<div class="container">
+					<nav class="navbar navbar-light navbar-expand-lg" style="background-color: #ffffff">
            	 			<a class="navbar-brand" href="{{ url('/') }}">mupo</a>
-                 			<button class="navbar-toggler" type="button" data-toggle="collapse" data-target="#navbarSupportedContent" aria-controls="navbarSupportedContent" aria-expanded="false" aria-label="Toggle navigation">
-                 				<span class="navbar-toggler-icon"></span>
-                 			</button>
+						<button class="navbar-toggler" type="button" data-toggle="collapse" data-target="#navbarSupportedContent" aria-controls="navbarSupportedContent" aria-expanded="false" aria-label="Toggle navigation">
+							<span class="navbar-toggler-icon"></span>
+						</button>
 
-                 			<div class="collapse navbar-collapse" id="navbarSupportedContent">
-                 				<ul class="navbar-nav mr-auto">
-		 					<li class="nav-item"><a class="nav-link" href="{{ url('/home') }}">Home</a></li>
-							<li class="nav-item"><a class="nav-link" href="{{ url('/notifications') }}">Notification</a></li>
-							<li class="nav-item right"><a class="nav-link" href="#">Profile</a></li>
-							<button class="btn btn-outline-dark share" type="button"><a class="share-link" href="{{ url('/admin/post/upload') }}">SHARE</a></button>
-		 				</ul>
-		 				<form class="form-inline my-2 my-lg-0">
-     							<input class="form-control mr-sm-2" type="search" placeholder="Search" aria-label="Search">
-     							<button class="btn btn-dark" type="submit">Search</button>
-   		 				</form>
-                 			</div>
-				</nav>
-            		</div>
-            		{{-- ナビゲーションバー終わり --}} 
-            		<main class="py-4">
-                		@yield('content')
-            		</main>
-		</div>
+						<div class="collapse navbar-collapse" id="navbarSupportedContent">
+							<ul class="navbar-nav mr-auto">
+								<li class="nav-item"><a class="nav-link" href="{{ url('/home') }}">Home</a></li>			
+								<li class="nav-item"><a class="nav-link" href="{{ url('/notifications') }}">Notification</a></li>
+								<li class="nav-item right"><a class="nav-link" href="{{ route('/profile', ['username'=>auth()->user()->username]) }}">Profile</a></li>
+								<button class="btn btn-outline-dark share" type="button"><a class="share-link" href="{{ url('/admin/post/upload') }}">SHARE</a></button>
+		 					</ul>
+							<form class="form-inline my-2 my-lg-0">
+								<div class="form-group">
+									<input class="form-control mr-sm-2" type="text" placeholder="Search title" value="{{ $keyword }}">
+									<button class="btn btn-dark" type="submit">Search</button>
+								</div>
+							</form>
+						</div>
+					</nav>
+				</div>
+				{{-- ナビゲーションバー終わり --}} 
+				<main class="py-4">
+					@yield('content')
+				</main>
+			</div>
 	</body>
 </html>

@@ -6,6 +6,7 @@ use Illuminate\Database\Eloquent\Model;
 use Auth;
 use App\Like;
 
+
 class Post extends Model
 {
 	protected $guarded = array('id');

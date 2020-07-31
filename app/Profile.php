@@ -2,6 +2,11 @@
 
 namespace App;
 
+use Auth;
+use App\History;
+use Carbon\Carbon;
+use App\User;
+
 use Illuminate\Database\Eloquent\Model;
 
 class Profile extends Model
@@ -12,5 +17,12 @@ class Profile extends Model
 	{
 		return $this->belongsTo('App\User');
     }
+
+    public function histories()
+	{
+		return $this->hasMany('App\History');
+    }
+
+
     
 }

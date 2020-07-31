@@ -4,17 +4,17 @@ namespace App\Http\Controllers\Admin;
 
 use Illuminate\Http\Request;
 use App\Http\Controllers\Controller;
+use Auth;
 use App\Profile;
 use App\Post;
-use Auth;
-use App\User;
+use App\History;
+use Carbon\Carbon;
 
 class ProfileController extends Controller
 {
     public function add()
     {
-        $user = new User;
-        return view('admin.profile.create');
+        return view('profile.create');
     }
 
     public function create(Request $request)
@@ -22,47 +22,63 @@ class ProfileController extends Controller
         $profile = new Profile;
         $form = $request->all();
 
+        if (isset($form['image'])) {
+            $path = $request->file('image')->store('public/image');
+            $profile->profile_pic_id = basename($path);
+          } else {
+                $profile->profile_pic_id = null;
+          }
+
         unset($form['_token']);
+        unset($form['image']);
 
         $profile->fill($form);
         $profile['user_id']=Auth::id();
         $profile->save();
         
-        return redirect('admin/profile');
+        return redirect('/home');
     }
 
     public function edit(Request $request)
     {
-        $profile = Profile::find($request->id);  //check if the user's profile exists
+        //$profile = Profile::find($request->id);
+        $profile = Profile::where('user_id', Auth::id())->first();
         if(empty($profile)) {
             abort(404);
         }
-        return view('admin.profile.edit', ['profile_form' => $profile]);　//replace "profile_form" on the blade file with the user's(found with id) data
+        return view('profile.edit', ['profile_form' => $profile]);
     }
     
     public function update(Request $request)
     {
-        $profile = Profile::find($request->id);　
-        $profile_form = $request->all();　//set the requested new data in $profile_form as an array
+        
+        //$profile = Profile::find($request->id);
+        $profile = Profile::where('user_id', Auth::id())->first();
+        $profile_form = $request->all();
+        if ($request->remove == 'true') {
+            $profile_form['profile_pic_id'] = null;
+        } elseif ($request->file('profile_pic_id')) {
+            $path = $request->file('image')->store('public/image');
+            $profile_form['profile_pic_id'] = basename($path);
+        } else {
+            $profile_form['profile_pic_id']= $profile->profile_pic_id;
+        }
         
         unset($profile_form['_token']);
-        
-        $profile->fill($profile_form);　//fill $profile data with $profile_form data (replacing (updating))
+        unset($profile_form['image']);
+        unset($profile_form['remove']);
+
+        $profile->fill($profile_form);
         $profile['user_id']=Auth::id();
         $profile->save();
         
         $history = new History;
         $history->profile_id = $profile->id;
-        $history->profile_edited_at = Carbon::now();
+        $history->edited_at = Carbon::now();
         $history->save();
         
-        return redirect("admin/profile/index");
-    }
-    
-    public function show()
-    {
-        
-        return view('admin.profile');
+        return redirect("/home");
     }
 
+    
 }
