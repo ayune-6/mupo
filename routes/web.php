@@ -48,6 +48,8 @@ Route::group(['prefix' => '/profile','middleware'=>'auth'],function(){
 	
 });
 
+Route::post('/home', 'HomeController@get');
+Route::get('/search-result', 'HomeController@search')->name('/search-result');
 
 
 

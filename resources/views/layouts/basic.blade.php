@@ -41,11 +41,12 @@
 								<li class="nav-item right"><a class="nav-link" href="{{ route('/profile', ['username'=>auth()->user()->username]) }}">Profile</a></li>
 								<button class="btn btn-outline-dark share" type="button"><a class="share-link" href="{{ url('/admin/post/upload') }}">SHARE</a></button>
 		 					</ul>
-							<form class="form-inline my-2 my-lg-0">
+							<form class="form-inline my-2 my-lg-0" action="{{ action('HomeController@get') }}" method="POST">
 								<div class="form-group">
-									<input class="form-control mr-sm-2" type="text" placeholder="Search title" value="{{ $keyword }}">
-									<button class="btn btn-dark" type="submit">Search</button>
+									<input class="form-control mr-sm-2" type="text" placeholder="Search" name="keyword">
+									<button class="btn btn-dark" type="submit" >Search</button>
 								</div>
+							{{ csrf_field() }}
 							</form>
 						</div>
 					</nav>
