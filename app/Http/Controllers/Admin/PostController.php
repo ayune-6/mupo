@@ -57,11 +57,20 @@ class PostController extends Controller
 		$this->middleware('auth', array('except' => 'index'));
 	}
 
-	public function show($id) {
+	/*public function show($id) {
 		$post = Post::findOrFail($id);
 		$like = $post->likes()->where('user_id', Auth::user()->id)->first();
 
 		return view('posts.show')->with(array('post' => $post, 'like' => $like));
+	}*/
+
+	public function delete(Request $request)
+	{
+		$post = Post::find($request->id);
+		\Debugbar::info($post);
+		$post->delete();
+
+		return redirect('/home');
 	}
 
 

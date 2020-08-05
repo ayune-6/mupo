@@ -8,6 +8,7 @@ use App\Http\Requests;
 use App\Like;
 use Auth;
 use App\Post;
+use App\User;
 
 class LikesController extends Controller
 {
@@ -16,29 +17,30 @@ class LikesController extends Controller
     }
 
     public function like(Request $request) {
-        $request -> validate ([
-            'user_id' => 'required|exists:user,id'
-        ]);
-
-        $exists = \App\Like::where('user_id', request()->user()->id)
-            ->where('post_id', $post->id)
-            ->exists();
+        \Debugbar::info($request);
         
-        if(!$exists) {
-            $post = new Post;
-            $like = new Like;
-            $like->user_id = Auth::user()->id;
-            $like->post_id = $post->id();
-            $result = $like->save();
-        }else{
-            $post->like_by()->delete();
-        }
+        $input = $request->all();
+        \Debugbar::info($input);
+        \Debugbar::info($input['user_id']);
+        
+        $like = new Like;
+        $liked = Like::where('user_id', $input['user_id'])->where('post_id', $input['post_id']);
+        \Debugbar::info($liked);
 
-        private function getUsers() {
-            return \App\User::with('likes')
-                ->withcount('likes')
-                ->get();
+        if(!$liked) { 
+            $like->user_id = $input['user_id'];
+            $like->post_id = $input['post_id'];
+            $like->save();
+        }else{
+            $like->delete();
         }
-            
     }
+
+    private function getUsers() {
+        return User::with('likes')
+            ->withcount('likes')
+            ->get();
+    }
+            
+    
 }

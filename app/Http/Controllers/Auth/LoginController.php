@@ -2,6 +2,9 @@
 
 namespace App\Http\Controllers\Auth;
 
+use Auth;
+use App\User;
+use App\Profile;
 use App\Http\Controllers\Controller;
 use Illuminate\Foundation\Auth\AuthenticatesUsers;
 
@@ -20,12 +23,26 @@ class LoginController extends Controller
 
     use AuthenticatesUsers;
 
+    protected function redirectTo() {
+        //$user = new User;
+        $user = Auth::user()->id;
+        \Debugbar::info($user);
+        $profile = Profile::where('user_id', $user)->first();
+        \Debugbar::info($profile);
+        if(empty($profile)) {
+             return '/profile/create';
+        }else{
+            return '/home';
+        }
+     }
+
     /**
      * Where to redirect users after login.
      *
      * @var string
      */
     protected $redirectTo = '\home'; 
+    
 
     /**
      * Create a new controller instance.

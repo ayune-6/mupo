@@ -29,7 +29,12 @@ class ProfileController extends Controller
         \Debugbar::info($user);
         $userinfo = $user->id;
         $profile = Profile::where('user_id', $userinfo)->first();
-        return view('profile.profile', ['profile' => $profile]);
+
+        $posts = Post::where('user_id', $userinfo)->get();
+
+        \Debugbar::info($posts);
+
+        return view('profile.profile', ['profile' => $profile, 'posts' => $posts]);
     }
 
 

@@ -21,7 +21,7 @@
 		<link href="{{ asset('css/welcome.css') }}" rel="stylesheet">
 	</head>
         <body>
-			<div id="app">
+			
     			<div class="container">
         			<nav class="navbar navbar-light navbar-expand-lg" style="background-color: #fff">
 						<a class="navbar-brand" href="{{ url('/') }}">mupo</a>
@@ -43,7 +43,7 @@
 						</div>
         			</div>
     			</main>
-			</div>
+			
         </body>
 </html>
 

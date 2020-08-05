@@ -25,16 +25,19 @@ Route::get('/home', 'HomeController@index')->name('home');
 
 Route::get('/register', 'Auth\RegisterController@showRegistrationForm');
 Route::post('/register', 'Auth\RegisterController@register');
+Route::get('/delete/{id}', 'Admin\ProfileController@destroy')->middleware('auth')->name('/delete');
 
 Route::group(['prefix' => 'admin', 'middlesware' => 'auth'], function() {
 	Route::get('post/upload', 'Admin\PostController@videoupload');
 	Route::get('post/create', 'Admin\PostController@informationpost');
 	Route::post('post/create', 'Admin\PostController@create');
+	Route::get('post/delete/{id}', 'Admin\PostController@delete')->name('admin/post/delete');
 
 });
 
 Route::get('/login', 'Auth\LoginController@showLoginForm')->name('login');
 Route::post('/login', 'Auth\LoginController@login');
+Route::get('/logout', 'Auth\LoginController@logout');
 
 Route::get('/ajax/like/user_list', 'LikesController@user_list');
 Route::post('/like', 'LikesController@like')->name('like');
@@ -48,8 +51,8 @@ Route::group(['prefix' => '/profile','middleware'=>'auth'],function(){
 	
 });
 
-Route::post('/home', 'HomeController@get');
-Route::get('/search-result', 'HomeController@search')->name('/search-result');
+//Route::post('/home', 'HomeController@get');
+Route::post('/search-result', 'HomeController@searchResult')->name('/search-result');
 
 
 

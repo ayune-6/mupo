@@ -51,3 +51,15 @@ body {
   color: #fff;
 }
 
+.delete-link {
+  color: #fff;
+}
+
+.account-delete-link {
+  color: #fff;
+}
+
+.like-btn {
+  border-radius: 50%;
+}
+

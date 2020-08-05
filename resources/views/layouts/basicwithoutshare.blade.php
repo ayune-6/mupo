@@ -21,7 +21,7 @@
                 <link href="{{ asset('css/basic.css') }}" rel="stylesheet">
         </head>
         <body>
-                <div id="app">
+                
                         {{-- ナビゲーションバー --}}
                         <div class="container">
                                 <nav class="navbar navbar-light navbar-expand-lg" style="background-color: #ffffff">
@@ -36,10 +36,7 @@
                                                         <li class="nav-item"><a class="nav-link" href="{{ url('/notifications') }}">Notification</a></li>
                                                         <li class="nav-item right"><a class="nav-link" href="{{ route('/profile', ['username'=>auth()->user()->username]) }}">Profile</a></li>
                                                 </ul>
-                                                <form class="form-inline my-2 my-lg-0">
-                                                        <input class="form-control mr-sm-2" type="search" placeholder="Search" aria-label="Search">
-                                                        <button class="btn btn-dark" type="submit">Search</button>
-                                                </form>
+                                                
                                         </div>
                                 </nav>
                         </div>
@@ -47,7 +44,7 @@
                         <main class="py-4">
                                 @yield('content')
                         </main>
-                </div>
+                
         </body>
 </html>
 

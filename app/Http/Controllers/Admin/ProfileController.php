@@ -5,10 +5,13 @@ namespace App\Http\Controllers\Admin;
 use Illuminate\Http\Request;
 use App\Http\Controllers\Controller;
 use Auth;
+use App\User;
 use App\Profile;
 use App\Post;
 use App\History;
 use Carbon\Carbon;
+
+
 
 class ProfileController extends Controller
 {
@@ -34,6 +37,7 @@ class ProfileController extends Controller
 
         $profile->fill($form);
         $profile['user_id']=Auth::id();
+        
         $profile->save();
         
         return redirect('/home');
@@ -79,6 +83,17 @@ class ProfileController extends Controller
         
         return redirect("/home");
     }
+
+    public function destroy(Request $request){
+
+        $user = User::where('id', Auth::id())->first();
+
+        \Debugbar::info($user);
+        $user->delete();
+    
+        return redirect('/');
+    }
+
 
     
 }

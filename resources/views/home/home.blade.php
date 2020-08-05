@@ -19,7 +19,7 @@
                     </video>
                     
                        
-                            <div class="mask rgba-white-slight"></div>
+                        <div class="mask rgba-white-slight"></div>
                     </div>
                     <div class="card-body">
                         <h4 class="title">{{ str_limit($post->title, 50) }}</h4>
@@ -33,27 +33,9 @@
                         {{-- </form> --}}
                         <p class="description">{{ str_limit($post->description, 200) }}</p>
 
-                        <button type="button" class="btn" id="like">LIKE</button>
-                        <script src="https://ajax.googleapis.com/ajax/libs/jquery/1.11.3/jquery.min.js"></script>
-                        <script src="https://maxcdn.bootstrapcdn.com/bootstrap/3.3.5/js/bootstrap.min.js"></script>
-                        
-                        <script>
+                        <button class="btn btn-outline-danger like-btn" id="like-btn-{{ $loop->count }}"><i class="far fa-heart"></i></button>
+                      
                             
-                            document.getElementsByClass('btn').onclick = function(){
-                                console.log('liked');
-                                $.ajax({
-                                    method: 'POST',
-                                    url: 'http://127.0.0.1:8000/like',
-                                    data: {'user_id': $user->id},
-                                    .done(function() {
-                                        console.log('liked');
-                                    })
-                                });
-                                
-                            };
-
-                        </script>   
-
                     </div>
                 </div>
             </div>
@@ -70,6 +52,31 @@
             
         </script>
 
+        <script>
+            $("#like-btn-1").on("click", () => {
+                console.log("like");
+            })
+            let els = document.getElementsByClassName('like-btn');
+            [].forEach.call(els, (elm) => {
+                console.log($(elm));
+                $(elm).on("click", function(){
+                    console.log('liked');
+                    
+                    $.ajax({
+                        headers: {
+                            'X-CSRF-TOKEN' : $('meta[name="csrf-token"]').attr('content'),
+                        },
+                        method: 'POST',
+                        url: 'http://127.0.0.1:8000/like',
+                        data: {'user_id': {{ Auth::user()->id }}, 'post_id':{{ $post->id }} }
+                    })
+                    .done(function() {
+                        console.log('success');
+                    })   
+                });
+            });
+
+        </script>   
     </div>
 </div>
 @endsection

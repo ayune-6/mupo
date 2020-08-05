@@ -2,7 +2,9 @@
 
 namespace App\Http\Controllers\Auth;
 
+use Auth;
 use App\User;
+use App\Profile;
 use App\Http\Controllers\Controller;
 use App\VerifyUser;
 use App\Mail\VerifyMail;
@@ -10,6 +12,7 @@ use Illuminate\Support\Facades\Validator;
 use Illuminate\Foundation\Auth\RegistersUsers;
 use Illuminate\Support\Facades\Hash;
 use Illuminate\Support\Facades\Mail;
+use Illuminate\Http\Request;
 
 class RegisterController extends Controller
 {
@@ -102,4 +105,5 @@ class RegisterController extends Controller
         
     }
 
+    
 }

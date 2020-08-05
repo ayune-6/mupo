@@ -25,7 +25,7 @@
         	<link href="{{ asset('css/basic.css') }}" rel="stylesheet">
 	</head>
 	<body>
-        	<div id="app">
+        	
             		{{-- ナビゲーションバー --}}
 			    <div class="container">
                     <nav class="navbar navbar-light navbar-expand-lg" style="background-color: #ffffff">
@@ -39,6 +39,6 @@
                 <main class="py-4">
                     @yield('content')
                 </main>
-		</div>
+		
 	</body>
 </html>

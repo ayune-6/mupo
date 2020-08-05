@@ -11,21 +11,21 @@ class Like extends Model
 
     public $counterCacheOptions = [
         'Post' => [
-            'field' => 'likes_count', //countするもの
-            'foreignKey' => 'post_id'　//countされるもの
+            'field' => 'likes_count', 
+            'foreignKey' => 'post_id'
         ]
     ];
 
     protected $fillable = ['user_id', 'post_id'];
 
-    public function Post() //単数
+    public function Post() 
     {
       return $this->belongsTo('App\Post');
     }
 
-    public function User() //単数
+    public function User() 
     {
-      return $this->belongsTo(User::class);
+      return $this->belongsTo('App\User');
     }
 
 }

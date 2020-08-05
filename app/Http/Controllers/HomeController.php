@@ -6,7 +6,8 @@ use Illuminate\Http\Request;
 use App\Post;
 use App\User;
 use App\Like;
-
+use Auth;
+use App\Profile;
 
 class HomeController extends Controller
 {
@@ -27,37 +28,59 @@ class HomeController extends Controller
      */
     public function index(Request $request)
     {
+        
         $posts = Post::all()->sortByDesc('created_at');
         return view('home/home', ['posts' => $posts]);
 
     }
 
-    public function get(Request $request)
+    public function searchResult(Request $request)
     {
-        $searchkey = $request->input('name');
-        \Debugbar::info($searchkey);
+        $post = new Post;
 
-        if(!empty($searchkey))
+        $keywords = $request->input('keyword');
+        \Debugbar::info($keywords);
+
+        //$query = Post::query();
+
+        if(!empty($keywords))
         {   
             //titleから検索
-            $searches = Post::where('title', 'like', '%'.$searchkey.'%');
+            $posts = Post::where('title', 'like', '%'.$keywords.'%')
+                ->orWhere('description', 'like', '%'.$keywords.'%')
+                ->paginate(15);
+            //$query->where('title', 'like', '%'.$keywords.'%');
+                //->orWhere('bio', 'like', '%'.$keywords.'%');
                 //->paginate(15);
             //bioから検索
-            $searches = Post::where('bio', 'like', '%'.$searchkey.'%');
+            //$searchkeys = Profile::where('bio', 'like', '%'.$keywords.'%')
                 //->paginate(15);
 
         }else{
-            $searches = Post::orderBy('created_at', 'desc');
-                //->paginate(15);
+            $posts = Post::orderBy('created_at', 'desc')
+                ->paginate(15);
+
         }
 
-        return redirect('/search-result');
+        //$datas = $query->orderBy('created_at','desc')->paginate(10);
+
+        //$searchkeys = $query->get();
+        /*\Debugbar::info($posts);
+        \Debugbar::info($posts[0]);
+        \Debugbar::info($posts[0]['user_id']); */
+
+        return view('home.search-result',  
+            ['posts' => $posts]
+        );
 
     }
-    public function search()
-    {
-        //$searchkey = $keyword;
-        //if(!empty($searchkey))
+    //public function search()
+    //{
+        //$searchinfos = $this->get()->$searchkeys;
+
+        //\Debugbar::info($searchkeys);
+
+        //if(!empty($searches))
         //{   
             //titleから検索
             //$searches = Post::where('title', 'like', '%'.$keyword.'%');
@@ -71,16 +94,10 @@ class HomeController extends Controller
                 //->paginate(15);
         //}
 
-        $searchinfos = $this->get()->$searches;
-        \Debugbar::info($searchinfos);
 
-        return view('home.search-result',[
-            'searches' => $searchinfos,
-            ]);
-    }
-
-
-
-
+        //return view('home.search-result',[
+            //'searches' => $searcheinfos,
+            //]);
+    //}
 
 }
