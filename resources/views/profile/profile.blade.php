@@ -37,7 +37,6 @@
                  			<div class="collapse navbar-collapse" id="navbarSupportedContent">
                  				<ul class="navbar-nav mr-auto">
 		 					<li class="nav-item"><a class="nav-link" href="{{ url('/home') }}">Home</a></li>
-							<li class="nav-item"><a class="nav-link" href="{{ url('/notifications') }}">Notification</a></li>
 							<li class="nav-item right"><a class="nav-link" href="{{ route('/profile', ['username'=>auth()->user()->username]) }}">Profile</a></li>
 							<li class="nav-item right"><a class="nav-link" href="/logout">Logout</a></li>
 							
@@ -65,14 +64,12 @@
                                                     <div class="row">
                                                         <div class="col-12 col-sm-auto mb-3">
                                                             <div class="mx-auto" style="width: 140px; height: 140px;">
-                                                            @if ($profile->profile_pic_id)
-                                                                <img src="{{ asset('storage/image/' . $profile->profile_pic_id) }}">
+                                                            @if ($profile->profile_pic_id == null)
+                                                                <img src="/storage/profile/noimage.png" style="height: 140px; width: 140px;">
                                                             @else
-                                                                <div class="d-flex justify-content-center align-items-center rounded" style="height: 140px; background-color: rgb(233, 236, 239);">
-                                                                    <input type="file" class="form-control-file" name="image">    
-                                                                </div>
-                                                            @endif   
-                                                                </div>
+                                                                <img src="{{ asset('storage/profile/' . $profile->profile_pic_id) }}" style="height: 140px; width: 140px;">
+                                                            @endif
+                                                                </div>    
                                                             </div>
                                                         </div>
                                                         <div class="col d-flex flex-column flex-sm-row justify-content-between mb-3">

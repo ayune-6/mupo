@@ -36,7 +36,6 @@
                     <div class="collapse navbar-collapse" id="navbarSupportedContent">
                         <ul class="navbar-nav mr-auto">
                             <li class="nav-item"><a class="nav-link" href="{{ url('/home') }}">Home</a></li>
-                            <li class="nav-item"><a class="nav-link" href="{{ url('/notifications') }}">Notification</a></li>
                             <button class="btn btn-outline-dark share" type="button"><a class="share-link" href="{{ url('/admin/post/upload') }}">SHARE</a></button>
                         </ul>
                         <form class="form-inline my-2 my-lg-0">
@@ -48,7 +47,7 @@
             </div>
             <main class="py-4">
                 <div class="container">
-                <form action="{{ action('Admin\ProfileController@create') }}" method="POST">
+                <form action="{{ action('Admin\ProfileController@create') }}" method="POST" enctype="multipart/form-data">
                     @if (count($errors) > 0)
                         <ul>
                             @foreach($errors->all() as $e)

@@ -27,6 +27,8 @@
 			<link href="{{ asset('css/basic.css') }}" rel="stylesheet">
 			
 			<link href="https://use.fontawesome.com/releases/v5.6.1/css/all.css" rel="stylesheet">
+			<link rel="stylesheet" href="https://cdnjs.cloudflare.com/ajax/libs/font-awesome/4.7.0/css/font-awesome.min.css">
+
 	</head>
 	<body>
             		{{-- ナビゲーションバー --}}
@@ -40,7 +42,6 @@
 						<div class="collapse navbar-collapse" id="navbarSupportedContent">
 							<ul class="navbar-nav mr-auto">
 								<li class="nav-item"><a class="nav-link" href="{{ url('/home') }}">Home</a></li>			
-								<li class="nav-item"><a class="nav-link" href="{{ url('/notifications') }}">Notification</a></li>
 								<li class="nav-item right"><a class="nav-link" href="{{ route('/profile', ['username'=>auth()->user()->username]) }}">Profile</a></li>
 								<button class="btn btn-outline-dark share" type="button"><a class="share-link" href="{{ url('/admin/post/upload') }}">SHARE</a></button>
 		 					</ul>

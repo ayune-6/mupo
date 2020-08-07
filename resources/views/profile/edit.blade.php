@@ -21,14 +21,13 @@
                             <div class="form-group row">
                                 <div class="col-12 col-sm-auto mb-3"> 
                                     <div class="mx-auto" style="width: 140px; height: 140px;">
-                                    @if ($profile_form->profile_pic_id)
-                                        <img src="{{ asset('storage/image/' . $profile_form->profile_pic_id) }}">
-                                    @else
-                                        <div class="d-flex justify-content-center align-items-center rounded" style="height: 140px; background-color: rgb(233, 236, 239);">
-                                            <input type="file" class="form-control-file" name="image">    
-                                        </div>
-                                     @endif    
+                                        @if ($profile_form->profile_pic_id)
+                                            <img src="{{ asset('storage/profile/' . $profile_form->profile_pic_id) }}" style="height: 140px; width: 140px;">
+                                        @else
+                                            <img src="/storage/profile/noimage.png" style="height: 140px; width: 140px;">
+                                        @endif     
                                     </div>
+                                        <input type="file" class="form-control-file" name="image">
                                     <div class="form-check">
                                         <label class="form-check-label">
                                             <input type="checkbox" class="form-check-input" name="remove" value="true">Delete the profile picture
@@ -39,6 +38,7 @@
                                 <div class="col d-flex flex-column flex-sm-row justify-content-between mb-3">
                                     <div class="text-center text-sm-left mb-2 mb-sm-0">
                                         <h4 class="pt-sm-2 pb-1 mb-0 text-nowrap">{{ Auth::user()->name }}</h4>
+                                        <textarea class="form-control" rows="1" placeholder="Name" name="name" value="{{ $profile_form->name }}">{{ Auth::user()->name }}</textarea>
                                         <p class="mb-0">＠{{ Auth::user()->username }}</p>
                                     </div>
                                 </div>
@@ -60,7 +60,7 @@
                                     <div class="modal-dialog" role="document">
                                         <div class="modal-content">
                                             <div class="modal-header">
-                                                <h5 class="modal-title" id="deleteModalLabel">Are you sure?</h5>
+                                                <h5 class="modal-title" id="deleteModalLabel">Delete an account</h5>
                                                 <button type="button" class="close" data-dismiss="modal" aria-label="Close">
                                                     <span aria-hidden="true">&times;</span>
                                                 </button>

@@ -24,7 +24,7 @@ Route::get('/home', 'HomeController@index')->name('home');
 //Route::post('/home', 'ProfileController@getuser')->name('home');
 
 Route::get('/register', 'Auth\RegisterController@showRegistrationForm');
-Route::post('/register', 'Auth\RegisterController@register');
+Route::post('/register', 'Auth\RegisterController@register')->name('register');
 Route::get('/delete/{id}', 'Admin\ProfileController@destroy')->middleware('auth')->name('/delete');
 
 Route::group(['prefix' => 'admin', 'middlesware' => 'auth'], function() {
@@ -39,8 +39,8 @@ Route::get('/login', 'Auth\LoginController@showLoginForm')->name('login');
 Route::post('/login', 'Auth\LoginController@login');
 Route::get('/logout', 'Auth\LoginController@logout');
 
-Route::get('/ajax/like/user_list', 'LikesController@user_list');
-Route::post('/like', 'LikesController@like')->name('like');
+Route::get('/likes/{postId}', 'LikesController@user_list')->name('/likes');
+Route::get('/like', 'LikesController@like')->name('like');
 
 Route::group(['prefix' => '/profile','middleware'=>'auth'],function(){
 	Route::get('/create', 'Admin\ProfileController@add');

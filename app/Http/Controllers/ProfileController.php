@@ -29,7 +29,10 @@ class ProfileController extends Controller
         \Debugbar::info($user);
         $userinfo = $user->id;
         $profile = Profile::where('user_id', $userinfo)->first();
-
+        \Debugbar::info($profile);
+        if(empty($profile)) {
+            abort(404);
+        }
         $posts = Post::where('user_id', $userinfo)->get();
 
         \Debugbar::info($posts);
