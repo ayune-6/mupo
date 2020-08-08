@@ -6,7 +6,7 @@
     <div class="row">
         @if(!empty($posts))
             @foreach($posts as $post)
-                <div class="col-4">
+                <div class="col-md-4">
                     <div class="card">
                         <div class="view overlay">
 
@@ -22,7 +22,7 @@
                                 <div class="mask rgba-white-slight"></div>
                         </div>
                         <div class="card-body">
-                            <h4 class="title">{{ str_limit($post->title, 50) }}</h4>
+                            <h4 class="title">{{ str_limit($post->title, 100) }}</h4>
                             <a class="username" href="{{ route('/profile', ['username'=>$post->user->username]) }}">{{ $post->user->username }}</a>
                             
                             <p class="description">{{ str_limit($post->description) }}</p>

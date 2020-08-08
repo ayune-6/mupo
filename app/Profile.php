@@ -13,6 +13,12 @@ class Profile extends Model
 {
     protected $guarded = array('id');
 
+    public static $rules = array(
+      'bio' => 'max:1000',
+      'image' => 'image|mimes:jpeg,png,jpg|max:1000',
+      );
+    
+
     public function user()
 	{
 		return $this->belongsTo('App\User');

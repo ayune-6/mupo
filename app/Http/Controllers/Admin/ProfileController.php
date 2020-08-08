@@ -22,6 +22,7 @@ class ProfileController extends Controller
 
     public function create(Request $request)
     {
+        $this->validate($request, Profile::$rules);
         $profile = new Profile;
         $form = $request->all();
 
@@ -67,6 +68,8 @@ class ProfileController extends Controller
     
     public function update(Request $request)
     {
+        $this->validate($request, Profile::$rules);
+        
         //$profile = Profile::find($request->id);
         $profile = Profile::where('user_id', Auth::id())->first();
         $profile_form = $request->all();

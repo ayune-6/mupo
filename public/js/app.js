@@ -49673,10 +49673,10 @@ __webpack_require__.r(__webpack_exports__);
 /*! no static exports found */
 /***/ (function(module, exports, __webpack_require__) {
 
-__webpack_require__(/*! /home/vagrant/code/mupo/resources/js/app.js */"./resources/js/app.js");
-__webpack_require__(/*! /home/vagrant/code/mupo/resources/sass/app.scss */"./resources/sass/app.scss");
-__webpack_require__(/*! /home/vagrant/code/mupo/resources/sass/basic.scss */"./resources/sass/basic.scss");
-module.exports = __webpack_require__(/*! /home/vagrant/code/mupo/resources/sass/welcome.scss */"./resources/sass/welcome.scss");
+__webpack_require__(/*! /Users/ayune_6/code/mupo/resources/js/app.js */"./resources/js/app.js");
+__webpack_require__(/*! /Users/ayune_6/code/mupo/resources/sass/app.scss */"./resources/sass/app.scss");
+__webpack_require__(/*! /Users/ayune_6/code/mupo/resources/sass/basic.scss */"./resources/sass/basic.scss");
+module.exports = __webpack_require__(/*! /Users/ayune_6/code/mupo/resources/sass/welcome.scss */"./resources/sass/welcome.scss");
 
 
 /***/ })
