@@ -42,7 +42,8 @@
 						<div class="collapse navbar-collapse" id="navbarSupportedContent">
 							<ul class="navbar-nav mr-auto">
 								<li class="nav-item"><a class="nav-link" href="{{ url('/home') }}">Home</a></li>			
-								<li class="nav-item right"><a class="nav-link" href="{{ route('/profile', ['username'=>auth()->user()->username]) }}">Profile</a></li>
+								<li class="nav-item"><a class="nav-link" href="{{ route('/profile', ['username'=>auth()->user()->username]) }}">Profile</a></li>
+								<li class="nav-item right"><a class="nav-link" href="/logout">Logout</a></li>
 								<button class="btn btn-outline-dark share" type="button"><a class="share-link" href="{{ url('/admin/post/upload') }}">SHARE</a></button>
 		 					</ul>
 							<form class="form-inline my-2 my-lg-0" action="{{ url('/search-result') }}" method="POST">

@@ -58,6 +58,7 @@
                     <div class="col">
                         <div class="row">
                             <div class="col mb-3">
+                                <h2>First, you need to create your profile.</h2>
                                 <div class="card">
                                     <div class="card-body">
                                         <div class="e-profile">

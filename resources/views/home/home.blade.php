@@ -24,15 +24,15 @@
                     <div class="card-body">
                         <h4 class="title">{{ str_limit($post->title, 100) }}</h4>
                         <a class="username" href="{{ route('/profile', ['username'=>$post->user->username]) }}">＠{{ $post->user->username }}</a>
-                        
+                              
                             
                         <p class="description">{{ str_limit($post->description, 200) }}</p>
                         {{-- @if(empty($liked)) --}}
-                        <button class="btn btn-outline-dark like-btn" data-toggle="button" aria-pressed="false" autocomplete="off" id="like-btn-{{ $loop->count }}"><i class="far fa-heart"></i></button>
+                     {{--  <button class="btn btn-outline-dark like-btn" data-toggle="button" aria-pressed="false" autocomplete="off" id="like-btn-{{ $loop->count }}"><i class="far fa-heart"></i></button> --}}
                         {{-- @else --}}
                         {{-- <button class="btn btn-outline-danger like-btn" data-toggle="button" aria-pressed="false" autocomplete="off" id="like-btn-{{ $loop->count }}"><i class="fas fa-heart"></i></button> --}}
                         {{-- @endif --}}
-                        <a class="likedUsers" href="{{ route('/likes', ['postId' => $post->id]) }}">{{ $post->likes_count }}likes</a>
+                     {{--  <a class="likedUsers" href="{{ route('/likes', ['postId' => $post->id]) }}">{{ $post->likes_count }}likes</a> --}}
                     </div>
                 </div>
             </div>

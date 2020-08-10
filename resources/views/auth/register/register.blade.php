@@ -8,7 +8,7 @@
                             <div class="card-body">
 
                                 <form class="form-horizontal" method="POST" action="/register">
-					{{ csrf_field() }}
+									{{ csrf_field() }}
 
 					<div class="form-group row">
                                         	<label for="name" class="col-md-4 control-label">Name</label>

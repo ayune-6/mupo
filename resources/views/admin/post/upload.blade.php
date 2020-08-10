@@ -10,13 +10,14 @@
                     <div class="container description mx-auto my-auto">
                         <h1 class="share-your-sound">Share your sound!</h1>
                         <h2 class="description">First, select your video to upload.</h2>
+                        <p>Your video must be within 1 min</p>
                             <script src="https://widget.cloudinary.com/v2.0/global/all.js" type="text/javascript"></script>   
                             <button id="upload_widget" class="cloudinary-button" onclick="myWidget.open()">Upload files</button>
                             <script type="text/javascript">
                             var myWidget = cloudinary.createUploadWidget({
                                 cloudName: "dlzhqknj5", 
                                 uploadPreset: "mupo_upload",
-                                sources: [ 'local', 'camera', 'instagram', 'facebook'],
+                                sources: [ 'local', 'camera'],
                                 styles:{
                                     palette: {
                                         window: "#FFF",
@@ -33,7 +34,8 @@
                                         complete: "#00a5dd",
                                         sourceBg: "#000000"
                                     },
-                                },
+                                    
+                                }
                                 }, (error, result) => { 
                                     console.log(result);
                                     if (!error && result && result.event === "success") { 
@@ -55,6 +57,7 @@
                         
                     </div>
                 </div>
+                {{ csrf_field }}
                 <button class="btn btn-dark btn-lg next" type="button"><a id ="next-step" class="next-step" href="{{ url('/admin/post/create') }}">Next Step</a></button>
             </div>
         </div>
