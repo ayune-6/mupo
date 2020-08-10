@@ -1,6 +1,7 @@
 <?php
 
 namespace App\Http\Middleware;
+use Illuminate\Support\Facades\App;
 
 use Closure;
 
@@ -13,12 +14,14 @@ class RedirectToHttps
      * @param  \Closure  $next
      * @return mixed
      */
+    
     public function handle($request, Closure $next)
     {
-        if(!$this->is_ssl() && config('app.env') === 'production'){
-            return redirect('https://'.$_SERVER['HTTP_HOST'].$_SERVER['REQUEST_URI']);
-        }
-        return $next($request);
+            if (!$request->secure() && App::environment() === 'production') {
+                return redirect()->secure($request->getRequestUri());
+            }
+
+            return $next($request); 
     }
 
     public function is_ssl()
