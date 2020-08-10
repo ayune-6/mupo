@@ -43,7 +43,7 @@ class HomeController extends Controller
         $post = new Post;
 
         $keywords = $request->input('keyword');
-        \Debugbar::info($keywords);
+        ////\Debugbar::info($keywords);
 
         //$query = Post::query();
 
@@ -69,9 +69,9 @@ class HomeController extends Controller
         //$datas = $query->orderBy('created_at','desc')->paginate(10);
 
         //$searchkeys = $query->get();
-        /*\Debugbar::info($posts);
-        \Debugbar::info($posts[0]);
-        \Debugbar::info($posts[0]['user_id']); */
+        /*//\Debugbar::info($posts);
+        //\Debugbar::info($posts[0]);
+        //\Debugbar::info($posts[0]['user_id']); */
 
         return view('home.search-result',  
             ['posts' => $posts]
@@ -82,7 +82,7 @@ class HomeController extends Controller
     //{
         //$searchinfos = $this->get()->$searchkeys;
 
-        //\Debugbar::info($searchkeys);
+        ////\Debugbar::info($searchkeys);
 
         //if(!empty($searches))
         //{   

@@ -26,9 +26,9 @@ class LoginController extends Controller
     protected function redirectTo() {
         //$user = new User;
         $user = Auth::user()->id;
-        \Debugbar::info($user);
+        ////\Debugbar::info($user);
         $profile = Profile::where('user_id', $user)->first();
-        \Debugbar::info($profile);
+        ////\Debugbar::info($profile);
         if(empty($profile)) {
              return '/profile/create';
         }else{

@@ -67,7 +67,7 @@ class PostController extends Controller
 	public function delete(Request $request)
 	{
 		$post = Post::find($request->id);
-		\Debugbar::info($post);
+		//\Debugbar::info($post);
 		$post->delete();
 
 		return redirect('/home');

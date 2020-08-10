@@ -24,18 +24,18 @@ class ProfileController extends Controller
     public function show($username)
     {
         $data = $username;
-        \Debugbar::info($data);
+        //\Debugbar::info($data);
         $user = User::where('username', $data)->first();
-        \Debugbar::info($user);
+        //\Debugbar::info($user);
         $userinfo = $user->id;
         $profile = Profile::where('user_id', $userinfo)->first();
-        \Debugbar::info($profile);
+        //\Debugbar::info($profile);
         if(empty($profile)) {
             abort(404);
         }
         $posts = Post::where('user_id', $userinfo)->get();
 
-        \Debugbar::info($posts);
+        //\Debugbar::info($posts);
 
         return view('profile.profile', ['profile' => $profile, 'posts' => $posts]);
     }

@@ -31,9 +31,9 @@ class ProfileController extends Controller
 
             //$image = $request->file('image');
             $filePath = $form['image']->store('public/profile');
-            \Debugbar::info($filePath);
+            //\Debugbar::info($filePath);
             //$img = Image::make($request->file('image'))->resize(140, 140);
-            //\Debugbar::info($img);
+            ////\Debugbar::info($img);
             //$img->save('/public/profile'.$filename);
             //$profile->profile_pic_id = str_replace('public/profile', '', $filePath)->save();
             $form['profile_pic_id'] = str_replace('public/profile', '', $filePath);
@@ -58,7 +58,7 @@ class ProfileController extends Controller
     {
         //$profile = Profile::find($request->id);
         $profile = Profile::where('user_id', Auth::id())->first();
-        \Debugbar::info($profile);
+        //\Debugbar::info($profile);
         $user = User::where('id', Auth::id())->first();
         if(empty($profile)) {
             abort(404);
@@ -73,17 +73,17 @@ class ProfileController extends Controller
         //$profile = Profile::find($request->id);
         $profile = Profile::where('user_id', Auth::id())->first();
         $profile_form = $request->all();
-        \Debugbar::info($profile_form);
+        //\Debugbar::info($profile_form);
         if ($request->remove == 'true') {
             $profile_form['profile_pic_id'] = null;
         } elseif ($request->file('image')) {
             $newFilePath = $profile_form['image']->store('public/profile');
-            \Debugbar::info($newFilePath);
+            //\Debugbar::info($newFilePath);
             $profile_form['profile_pic_id'] = str_replace('public/profile', '', $newFilePath);
             //$filename = sha1(time());
-            //\Debugbar::info($filename);
+            ////\Debugbar::info($filename);
             //$img = Image::make($request->file('image'))->resize(140, 140);
-            //\Debugbar::info($img);
+            ////\Debugbar::info($img);
             //$img->save('/public/profile'.$filename);
             //$profile_form->profile_pic_id = $filename;
 
@@ -98,9 +98,9 @@ class ProfileController extends Controller
         //$profile->fill($profile_form);
         $profile['user_id']=Auth::id();
         $profile->bio = $profile_form['bio'];
-        \Debugbar::info($profile->bio);
+        //\Debugbar::info($profile->bio);
         $profile->profile_pic_id = $profile_form['profile_pic_id'];
-        \Debugbar::info($profile->profile_pic_id);
+        //\Debugbar::info($profile->profile_pic_id);
         $profile->save(); 
 
         $user = User::where('id', Auth::id())->first();
@@ -119,7 +119,7 @@ class ProfileController extends Controller
 
         $user = User::where('id', Auth::id())->first();
 
-        \Debugbar::info($user);
+        //\Debugbar::info($user);
         $user->delete();
     
         return redirect('/');
