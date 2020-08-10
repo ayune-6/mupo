@@ -16,9 +16,9 @@
 		<link rel="dns-prefetch" href="https://fonts.gstatic.com">
 		<link href="https://fonts.googleapis.com/css2?family=Raleway&display=swap" rel="stylesheet">
 		{{-- Laravelで用意されているstylesheetの読み込み --}}
-		<link href="{{ asset('css/app.css') }}" rel="stylesheet">
+		<link href="{{ secure_asset('css/app.css') }}" rel="stylesheet">
 		{{-- このあと作成するwelcome CSSの読み込み --}}
-		<link href="{{ asset('css/welcome.css') }}" rel="stylesheet">
+		<link href="{{ secure_asset('css/welcome.css') }}" rel="stylesheet">
 	</head>
         <body>
 			
