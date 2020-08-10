@@ -52,7 +52,6 @@ return [
             'prefix' => '',
             'strict' => true,
             'engine' => null,
-            'sslmode' => 'require',
         ],
 
         'pgsql' => [
