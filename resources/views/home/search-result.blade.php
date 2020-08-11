@@ -5,7 +5,7 @@
 <div class="container">
 {{ csrf_field() }}
     <div class="row">
-        @if(!empty($posts))
+        
             @foreach($posts as $post)
                 <div class="col-md-4">
                     <div class="card">
@@ -13,10 +13,10 @@
 
                         
                         <video
-                            id='sound-player'
-                            controls
-                            class="cld-video-player cld-video-player-skin-light">
+                            id='sound-player-{{ $loop->count }}'
+                            class="cld-video-player cld-video-player-skin-light"
                             data-cld-source='{ "publicId": "{{ $post->video_id }}" }'
+                            data-cld-transformation='{ "crop": "limit", "height": 200, "width":300}'>
                         </video>
                         
                         
@@ -34,17 +34,10 @@
             <script type="text/javascript"> 
                 var cld = cloudinary.Cloudinary.new({ cloud_name: "dlzhqknj5" });
                 var players = cld.videoPlayers('.cld-video-player', {
-                    
-                    loop: true,
                     controls: true,
-                    autoplayMode: 'on-scroll',
-                    floatingWhenNotVisible: 'left',
                 });
                 
             </script>
-        @else
-        <h2>result not found.</h2>
-        @endif
 
     </div>
 </div>
