@@ -33,7 +33,7 @@
         			</nav>
     			</div>
     			<main>
-        			<div class="jumbotron">
+        			<div class="jumbotron welcome-jumbotron">
 						<div class="container description mx-auto my-auto">
 								<h1 class="brand text-center">mupo</h1>
 								<h2 class="title text-center">share your music with the world</h2>
