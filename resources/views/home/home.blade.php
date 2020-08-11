@@ -4,7 +4,7 @@
 @section('content')
 <div class="container">
     <div class="row"> 
-    @csrf
+    {{ csrf_field() }}
         @foreach($posts as $post)
             <div class="col-md-4">
                 <div class="card">

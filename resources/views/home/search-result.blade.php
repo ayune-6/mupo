@@ -3,7 +3,7 @@
 @section('content')
 
 <div class="container">
-@csrf
+{{ csrf_field() }}
     <div class="row">
         
             @foreach($posts as $post)

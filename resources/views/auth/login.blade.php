@@ -8,7 +8,7 @@
 				<div class="card-body">
 
 					<form class="form-horizontal" method="POST" name="loginform" action="{{ route('login') }}">
-						@csrf
+						{{ csrf_field() }}
 
 						@if (session('status'))
 							<div class="alert alert-success">
