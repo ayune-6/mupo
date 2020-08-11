@@ -76,7 +76,7 @@ class ProfileController extends Controller
             $newFilePath = Storage::disk('s3')->putFile('/',$profile_form['image'],'public');
 
             //$profile_form['profile_pic_id'] = str_replace('public/profile', '', $newFilePath);
-            $profile_form['profile_pic_id'] =  Storage::disk('s3')->url($newfilePath);
+            $profile_form['profile_pic_id'] =  Storage::disk('s3')->url($newFilePath);
 
         } else {
             $profile_form['profile_pic_id'] = $profile->profile_pic_id;
