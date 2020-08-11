@@ -22,18 +22,9 @@
 	</head>
         <body>
 			
-    			<div class="container">
-        			<nav class="navbar navbar-light navbar-expand-lg" style="background-color: #fff">
-						<a class="navbar-brand" href="{{ url('/') }}">mupo</a>
-							<button class="navbar-toggler" type="button" data-toggle="collapse" data-target="#navbarSupportedContent" aria-controls="navbarSupportedContent" aria-expanded="false" aria-label="Toggle navigation">
-									<span class="navbar-toggler-icon"></span>
-							</button>
-
-							
-        			</nav>
-    			</div>
+    			
     			<main>
-        			<div class="jumbotron welcome-jumbotron">
+        			<div class="jumbotron">
 						<div class="container description mx-auto my-auto">
 								<h1 class="brand text-center">mupo</h1>
 								<h2 class="title text-center">share your music with the world</h2>
