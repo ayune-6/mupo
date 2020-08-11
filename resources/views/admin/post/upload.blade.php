@@ -57,7 +57,7 @@
                         
                     </div>
                 </div>
-                {{ csrf_field }}
+                @csrf
                 <button class="btn btn-dark btn-lg next" type="button"><a id ="next-step" class="next-step" href="{{ url('/admin/post/create') }}">Next Step</a></button>
             </div>
         </div>
