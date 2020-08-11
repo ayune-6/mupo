@@ -22,7 +22,7 @@
                                 <div class="col-12 col-sm-auto mb-3"> 
                                     <div class="mx-auto" style="width: 140px; height: 140px;">
                                         @if ($profile_form->profile_pic_id)
-                                            <img src="{{ secure_asset('storage/profile/' . $profile_form->profile_pic_id) }}" style="height: 140px; width: 140px;">
+                                            <img src="{{ $profile_form->profile_pic_id }}" style="height: 140px; width: 140px;">
                                         @else
                                             <img src="/storage/profile/noimage.png" style="height: 140px; width: 140px;">
                                         @endif     

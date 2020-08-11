@@ -10,7 +10,8 @@
         "jrm2k6/cloudder": "^0.6.0",
         "kanazaca/counter-cache": "^1.0",
         "laravel/framework": "5.*",
-        "laravel/tinker": "~1.0"
+        "laravel/tinker": "~1.0",
+        "league/flysystem-aws-s3-v3": "^1.0"
     },
     "require-dev": {
         "barryvdh/laravel-debugbar": "^3.3",

@@ -10,6 +10,7 @@ use App\Profile;
 use App\Post;
 use App\History;
 use Carbon\Carbon;
+use Storage;
 
 
 
@@ -29,17 +30,12 @@ class ProfileController extends Controller
         
         if (isset($form['image'])) {
 
-            //$image = $request->file('image');
-            $filePath = $form['image']->store('public/profile');
-            //\Debugbar::info($filePath);
-            //$img = Image::make($request->file('image'))->resize(140, 140);
-            ////\Debugbar::info($img);
-            //$img->save('/public/profile'.$filename);
-            //$profile->profile_pic_id = str_replace('public/profile', '', $filePath)->save();
-            $form['profile_pic_id'] = str_replace('public/profile', '', $filePath);
+            //$filePath = $form['image']->store('public/profile');
+            $filePath = Storage::disk('s3')->putFile('/',$form['image'],'public');
+            //$form['profile_pic_id'] = str_replace('public/profile', '', $filePath);
+            $form['profile_pic_id'] = Storage::disk('s3')->url($filePath);
           } else {
-                //$profile->profile_pic_id = null;
-                //$profile->profile_pic_id->save();
+                
                 $form['profile_pic_id'] = NULL;
           }
 
@@ -70,22 +66,17 @@ class ProfileController extends Controller
     {
         $this->validate($request, Profile::$rules);
         
-        //$profile = Profile::find($request->id);
         $profile = Profile::where('user_id', Auth::id())->first();
         $profile_form = $request->all();
-        //\Debugbar::info($profile_form);
+        
         if ($request->remove == 'true') {
             $profile_form['profile_pic_id'] = null;
         } elseif ($request->file('image')) {
-            $newFilePath = $profile_form['image']->store('public/profile');
-            //\Debugbar::info($newFilePath);
-            $profile_form['profile_pic_id'] = str_replace('public/profile', '', $newFilePath);
-            //$filename = sha1(time());
-            ////\Debugbar::info($filename);
-            //$img = Image::make($request->file('image'))->resize(140, 140);
-            ////\Debugbar::info($img);
-            //$img->save('/public/profile'.$filename);
-            //$profile_form->profile_pic_id = $filename;
+            //$newFilePath = $profile_form['image']->store('public/profile');
+            $newFilePath = Storage::disk('s3')->putFile('/',$profile_form['image'],'public');
+
+            //$profile_form['profile_pic_id'] = str_replace('public/profile', '', $newFilePath);
+            $profile_form['profile_pic_id'] =  Storage::disk('s3')->url($newfilePath);
 
         } else {
             $profile_form['profile_pic_id'] = $profile->profile_pic_id;

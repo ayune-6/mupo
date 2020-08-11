@@ -67,7 +67,7 @@
                                                             @if ($profile->profile_pic_id == null)
                                                                 <img src="/storage/profile/noimage.png" style="height: 140px; width: 140px;">
                                                             @else
-                                                                <img src="{{ secure_asset('storage/profile/' . $profile->profile_pic_id) }}" style="height: 140px; width: 140px;">
+                                                                <img src="{{ $profile->profile_pic_id }}" style="height: 140px; width: 140px;">
                                                             @endif
                                                                 </div>    
                                                             </div>
