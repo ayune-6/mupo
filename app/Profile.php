@@ -15,7 +15,7 @@ class Profile extends Model
 
     public static $rules = array(
       'bio' => 'max:1000',
-      'image' => 'image|mimes:jpeg,png,jpg,heic|max:5000',
+      //'image' => 'image|mimes:jpeg,png,jpg,heic|max:5000',
       );
     
 
