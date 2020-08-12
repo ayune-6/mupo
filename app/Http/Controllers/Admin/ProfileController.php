@@ -32,14 +32,17 @@ class ProfileController extends Controller
         if (isset($form['image'])) {
 
             $imagefile = $request->file('image');
+            $extension = $request->file('image')->getClientOriginalExtension();
+            
+            $filename  = $request->file('image')->getClientOriginalName();
+            
 
-            $image = Image::make($imagefile)
-                ->resize(300, null, function ($constraint) {
-                $constraint->aspectRatio();
-            });
+            $image = Image::make($imagefile)->resize(300, 300)->encode($extension);
 
-            $filePath = Storage::disk('s3')->putFile('/',$image,'public');
+            $filePath = Storage::disk('s3')->put('/'.$filename, $image,'public');
+            
             $form['profile_pic_id'] = Storage::disk('s3')->url($filePath);
+            $imagefile = $request->file('image');
 
             //$filePath = Storage::disk('s3')->putFile('/',$form['image'],'public');
             //$form['profile_pic_id'] = Storage::disk('s3')->url($filePath);
@@ -83,15 +86,15 @@ class ProfileController extends Controller
         } elseif ($request->file('image')) {
             $imagefile = $request->file('image');
             $extension = $request->file('image')->getClientOriginalExtension();
-            \Debugbar::info($extension);
+            //\Debugbar::info($extension);
             $filename  = $request->file('image')->getClientOriginalName();
-            \Debugbar::info($filename);
+            //\Debugbar::info($filename);
 
             $image = Image::make($imagefile)->resize(300, 300)->encode($extension);
-            \Debugbar::info($image);
+            //\Debugbar::info($image);
 
             $newFilePath = Storage::disk('s3')->put('/'.$filename, $image,'public');
-            \Debugbar::info($newFilePath);
+            //\Debugbar::info($newFilePath);
             $profile_form['profile_pic_id'] = Storage::disk('s3')->url($newFilePath);
             //$newFilePath = Storage::disk('s3')->putFile('/',$profile_form['image'],'public');
             //$profile_form['profile_pic_id'] =  Storage::disk('s3')->url($newFilePath);

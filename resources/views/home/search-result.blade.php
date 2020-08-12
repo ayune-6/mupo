@@ -24,7 +24,7 @@
                         </div>
                         <div class="card-body">
                             <h4 class="title">{{ str_limit($post->title, 100) }}</h4>
-                            <a class="username" href="{{ route('/profile', ['username'=>$post->user->username]) }}">{{ $post->user->username }}</a>
+                            <a class="username" href="{{ route('/profile', ['username'=>$post->user->username]) }}">＠{{ $post->user->username }}</a>
                             
                             <p class="description">{{ str_limit($post->description) }}</p>
                             </div>
