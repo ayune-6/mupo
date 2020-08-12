@@ -3,6 +3,7 @@
 namespace App\Http\Controllers\Admin;
 
 use Illuminate\Http\Request;
+use Intervention\Image\Facades\Image;
 use App\Http\Controllers\Controller;
 use Auth;
 use App\User;
@@ -30,10 +31,18 @@ class ProfileController extends Controller
         
         if (isset($form['image'])) {
 
-            //$filePath = $form['image']->store('public/profile');
-            $filePath = Storage::disk('s3')->putFile('/',$form['image'],'public');
-            //$form['profile_pic_id'] = str_replace('public/profile', '', $filePath);
+            $imagefile = $request->file('image');
+
+            $image = Image::make($imagefile)
+                ->resize(300, null, function ($constraint) {
+                $constraint->aspectRatio();
+            });
+
+            $filePath = Storage::disk('s3')->putFile('/',$image,'public');
             $form['profile_pic_id'] = Storage::disk('s3')->url($filePath);
+
+            //$filePath = Storage::disk('s3')->putFile('/',$form['image'],'public');
+            //$form['profile_pic_id'] = Storage::disk('s3')->url($filePath);
           } else {
                 
                 $form['profile_pic_id'] = NULL;
@@ -72,11 +81,20 @@ class ProfileController extends Controller
         if ($request->remove == 'true') {
             $profile_form['profile_pic_id'] = null;
         } elseif ($request->file('image')) {
-            //$newFilePath = $profile_form['image']->store('public/profile');
-            $newFilePath = Storage::disk('s3')->putFile('/',$profile_form['image'],'public');
+            $imagefile = $request->file('image');
+            $extension = $request->file('image')->getClientOriginalExtension();
+            \Debugbar::info($extension);
+            $filename  = $request->file('image')->getClientOriginalName();
+            \Debugbar::info($filename);
 
-            //$profile_form['profile_pic_id'] = str_replace('public/profile', '', $newFilePath);
-            $profile_form['profile_pic_id'] =  Storage::disk('s3')->url($newFilePath);
+            $image = Image::make($imagefile)->resize(300, 300)->encode($extension);
+            \Debugbar::info($image);
+
+            $newFilePath = Storage::disk('s3')->put('/'.$filename, $image,'public');
+            \Debugbar::info($newFilePath);
+            $profile_form['profile_pic_id'] = Storage::disk('s3')->url($newFilePath);
+            //$newFilePath = Storage::disk('s3')->putFile('/',$profile_form['image'],'public');
+            //$profile_form['profile_pic_id'] =  Storage::disk('s3')->url($newFilePath);
 
         } else {
             $profile_form['profile_pic_id'] = $profile->profile_pic_id;
