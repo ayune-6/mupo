@@ -37,12 +37,12 @@ class ProfileController extends Controller
             $filename  = $request->file('image')->getClientOriginalName();
             
 
-            $image = Image::make($imagefile)->resize(300, 300)->encode($extension);
+            $image = Image::make($imagefile)->resize(140, 140)->encode($extension);
 
             $filePath = Storage::disk('s3')->put('/'.$filename, $image,'public');
             
-            $form['profile_pic_id'] = Storage::disk('s3')->url($filePath);
-            $imagefile = $request->file('image');
+            $form['profile_pic_id'] = "https://mupo.s3-ap-northeast-1.amazonaws.com/".$filename;
+            
 
             //$filePath = Storage::disk('s3')->putFile('/',$form['image'],'public');
             //$form['profile_pic_id'] = Storage::disk('s3')->url($filePath);
@@ -90,12 +90,13 @@ class ProfileController extends Controller
             $filename  = $request->file('image')->getClientOriginalName();
             //\Debugbar::info($filename);
 
-            $image = Image::make($imagefile)->resize(300, 300)->encode($extension);
+            $image = Image::make($imagefile)->resize(140, 140)->encode($extension);
             //\Debugbar::info($image);
 
             $newFilePath = Storage::disk('s3')->put('/'.$filename, $image,'public');
-            //\Debugbar::info($newFilePath);
-            $profile_form['profile_pic_id'] = Storage::disk('s3')->url($newFilePath);
+            \Debugbar::info($newFilePath);
+            //$profile_form['profile_pic_id'] = Storage::disk('s3')->url($newFilePath);
+            $profile_form['profile_pic_id'] = "https://mupo.s3-ap-northeast-1.amazonaws.com/".$filename;
             //$newFilePath = Storage::disk('s3')->putFile('/',$profile_form['image'],'public');
             //$profile_form['profile_pic_id'] =  Storage::disk('s3')->url($newFilePath);
 

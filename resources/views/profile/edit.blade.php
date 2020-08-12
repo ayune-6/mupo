@@ -24,7 +24,7 @@
                                         @if ($profile_form->profile_pic_id)
                                             <img src="{{ $profile_form->profile_pic_id }}" style="height: 140px; width: 140px;">
                                         @else
-                                            <img src="/storage/profile/noimage.png" style="height: 140px; width: 140px;">
+                                            <img src="https://mupo.s3-ap-northeast-1.amazonaws.com/no-user-image.jpg" style="height: 140px; width: 140px;">
                                         @endif     
                                     </div>
                                         <input type="file" class="form-control-file" name="image">
