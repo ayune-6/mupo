@@ -47,7 +47,7 @@
 								<input class="form-control mr-sm-2" type="text" placeholder="Search" name="keyword">
 								<button class="btn btn-dark" type="submit" >Search</button>
 							</div>
-							{{ csrf_field() }}
+							@csrf
 						</form>
                  			</div>
 				</nav>

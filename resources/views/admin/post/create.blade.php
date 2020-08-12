@@ -28,7 +28,7 @@
                             </div>
                         </div>
                         <input type="hidden" name="video_id" value="{{ $video_id }}">
-                        {{ csrf_field() }}
+                        @csrf
                         <input type="submit" class="btn btn-dark btn-lg post" value="Post">    
                         
                     </form>

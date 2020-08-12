@@ -91,7 +91,7 @@
                                                     </div>
                                                 </div>
                                             </div>
-                                            {{ csrf_field() }}
+                                            @csrf
                                             <input type="submit" class="btn btn-dark btn-lg save" value="Save">
                                         </div>
                                     </div>

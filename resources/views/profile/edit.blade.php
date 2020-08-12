@@ -52,7 +52,7 @@
                                         </div>
                                     </div>
                                 </div>
-                                {{ csrf_field() }}
+                                @csrf
                                 <input type="submit" class="btn btn-dark btn-lg save" value="Save">
                                 
                                 <button type="button" class="btn btn-dl" data-toggle="modal" data-target="#deleteModal">Delete</button>
