@@ -29,6 +29,7 @@ class HomeController extends Controller
     public function index(Request $request)
     {
         $posts = Post::all()->sortByDesc('created_at');
+
         //$liked = Like::where('user_id', Auth::user()->id)
             //->where('post_id', $posts->id);
 

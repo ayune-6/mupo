@@ -52,16 +52,14 @@ class LikesController extends Controller
             $like->post_id = $post_id;
             $like->save();
         }else{
-            $like->delete();
+            $like->user_id = $liked->user_id;
+            $like->post_id = $liked->post_id;
+            $like->save();;
         }
         //\Debugbar::info($like);
     }
 
-    private function getUsers() {
-        return User::with('likes')
-            ->withcount('likes')
-            ->get();
-    }
+    
             
     
 }

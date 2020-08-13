@@ -10,7 +10,7 @@
 
         	<title>@yield('title')</title>
         	{{-- Javascript読み込み --}}
-			<script src="{{ secure_asset('js/app.js') }}" defer></script>
+			<script src="{{ asset('js/app.js') }}" defer></script>
 			<link href="https://unpkg.com/cloudinary-video-player@1.4.1/dist/cld-video-player.min.css" rel="stylesheet">
 			<script src="https://unpkg.com/cloudinary-core@2.10.3/cloudinary-core-shrinkwrap.min.js" type="text/javascript"></script>
 			<script src="https://unpkg.com/cloudinary-video-player@1.4.1/dist/cld-video-player.min.js" type="text/javascript"></script>
@@ -20,9 +20,9 @@
         	<link rel="dns-prefetch" href="https://fonts.gstatic.com">
 			<link href="https://fonts.googleapis.com/css2?family=Raleway&display=swap" rel="stylesheet">
         	{{-- Laravelで用意されているstylesheetの読み込み --}}
-        	<link href="{{ secure_asset('css/app.css') }}" rel="stylesheet">
+        	<link href="{{ asset('css/app.css') }}" rel="stylesheet">
         	{{-- このあと作成するbasic CSSの読み込み --}}
-        	<link href="{{ secure_asset('css/basic.css') }}" rel="stylesheet">
+        	<link href="{{ asset('css/basic.css') }}" rel="stylesheet">
 	</head>
 	<body>
         	
