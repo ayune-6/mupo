@@ -94,7 +94,7 @@ class ProfileController extends Controller
             //\Debugbar::info($image);
 
             $newFilePath = Storage::disk('s3')->put('/'.$filename, $image,'public');
-            \Debugbar::info($newFilePath);
+            //\Debugbar::info($newFilePath);
             //$profile_form['profile_pic_id'] = Storage::disk('s3')->url($newFilePath);
             $profile_form['profile_pic_id'] = "https://mupo.s3-ap-northeast-1.amazonaws.com/".$filename;
             //$newFilePath = Storage::disk('s3')->putFile('/',$profile_form['image'],'public');
