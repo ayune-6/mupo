@@ -46,7 +46,7 @@ Route::post('/login', 'Auth\LoginController@login');
 Route::get('/logout', 'Auth\LoginController@logout');
 
 //Route::get('/likes/{postId}', 'LikesController@user_list')->name('/likes');
-Route::get('/like', 'LikesController@like')->name('like');
+Route::get('/like', 'LikesController@like')->middleware('cors')->name('like');
 
 Route::group(['prefix' => '/profile','middleware'=>'auth'],function(){
 	Route::get('/create', 'Admin\ProfileController@add');
