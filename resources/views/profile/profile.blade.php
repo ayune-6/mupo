@@ -65,7 +65,7 @@
                                                         <div class="col-12 col-sm-auto mb-3">
                                                             <div class="mx-auto" style="width: 140px; height: 140px;">
                                                             @if ($profile->profile_pic_id == null)
-                                                                <img src="https://mupo.s3-ap-northeast-1.amazonaws.com/no-user-image.jpg" style="height: 140px; width: 140px;">
+                                                                <img src="https://mupo1.s3-us-east-2.amazonaws.com/no-user-image.jpg" style="height: 140px; width: 140px;">
                                                             @else
                                                                 <img src="{{ $profile->profile_pic_id }}" style="height: 140px; width: 140px;">
                                                             @endif
