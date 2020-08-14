@@ -52,7 +52,10 @@
                         },
                         method: 'GET',
                         url: 'https://127.0.0.1:8000/like',
-                        data: {'user_id': {{ Auth::user()->id }}, 'post_id': post_id }
+                        data: {'user_id': {{ Auth::user()->id }}, 'post_id': post_id },
+                        xhrFields: {
+                            withCredentials: true
+                        },
                     })
                     .done(function() {
                         $("#post_count_" + post_id).html($("#post_count_" + post_id).data("count") + 1 + "likes");
