@@ -51,7 +51,7 @@
                             'X-CSRF-TOKEN' : $('meta[name="csrf-token"]').attr('content'),
                         },
                         method: 'GET',
-                        url: 'https://127.0.0.1:8000/like',
+                        url: '{{ url('likes', null, true) }}',
                         data: {'user_id': {{ Auth::user()->id }}, 'post_id': post_id },
                         xhrFields: {
                             withCredentials: true
