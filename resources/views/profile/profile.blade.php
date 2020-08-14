@@ -90,7 +90,7 @@
                                                     @if($profile->user_id == Auth::id())
                                                     <div class="row">
                                                         <div class="col mb-3">
-                                                            <button class="btn btn-dark btn-lg edit" type="button"><a class="edit-link" href="{{ route('/profile/edit', ['username' => auth()->user()->username]) }}">Edit</a></button>
+                                                            <button class="btn btn-dark btn-lg edit" type="button"><a class="edit-link" href="{{ route('/profile/edit') }}">Edit</a></button>
                                                         </div>
                                                     </div>
                                                     @endif
