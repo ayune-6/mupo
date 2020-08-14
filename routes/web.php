@@ -26,7 +26,7 @@ Route::get('/user/verify/{token}', 'Auth\RegisterController@verifyUser');
 
 
 
-Route::get('/home', 'HomeController@index')->middleware('Cors')->name('home');
+Route::get('/home', 'HomeController@index')->middleware('cors')->name('home');
 //Route::post('/home', 'ProfileController@getuser')->name('home');
 
 Route::get('/register', 'Auth\RegisterController@showRegistrationForm');
@@ -46,7 +46,7 @@ Route::post('/login', 'Auth\LoginController@login');
 Route::get('/logout', 'Auth\LoginController@logout');
 
 //Route::get('/likes/{postId}', 'LikesController@user_list')->name('/likes');
-Route::get('/like', 'LikesController@like')->middleware('Cors')->name('like');
+Route::get('/like', 'LikesController@like')->middleware('cors')->name('like');
 
 Route::group(['prefix' => '/profile','middleware'=>'auth'],function(){
 	Route::get('/create', 'Admin\ProfileController@add');
